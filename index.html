@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monty</title>
+    <h1>LEST PLAY!</h1>
+</head>
+
+<body>
+    <h2>Monty Hall Problem</h2>
+    <p>Welcome to the Monty Hall problem simulation! Choose a door and see if you can win a car!</p>
+    <form id="doorForm">
+        <label for="door">Choose a door (1, 2, or 3):</label>
+        <div id="doors" style="display: flex; justify-content:  space-around;">
+                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door1">
+                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door2">
+                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door3">
+        </div>
+        <div id="doorLabels" style="display: flex; justify-content:  space-around;">
+            <h3 id="Labeldoor1"></h3>
+            <h3 id="Labeldoor2"></h3>
+            <h3 id="Labeldoor3"></h3>                    
+        </div>
+    </form>
+    <script src="app.js"></script>
+</body>
+</html>
