@@ -1,4 +1,8 @@
 // app.js
+function door1Handler() { handleDoorClick(1); }
+function door2Handler() { handleDoorClick(2); }
+function door3Handler() { handleDoorClick(3); }
+
 document.addEventListener("DOMContentLoaded", () => {
     const door1 = document.getElementById("door1");
     const door2 = document.getElementById("door2");
@@ -13,21 +17,33 @@ document.addEventListener("DOMContentLoaded", () => {
         door.dataset.value = values[index]; // Usar dataset para almacenar el valor
     });
 
-    // Agregar eventos
-    door1.addEventListener("click", () => handleDoorClick(1));
-    door2.addEventListener("click", () => handleDoorClick(2));
-    door3.addEventListener("click", () => handleDoorClick(3));
+    // Agregar eventos usando funciones nombradas
+    door1.addEventListener("click", door1Handler);
+    door2.addEventListener("click", door2Handler);
+    door3.addEventListener("click", door3Handler);
+
 });
 
+function removeAllDoorClicks() {
+    const door1 = document.getElementById("door1");
+    const door2 = document.getElementById("door2");
+    const door3 = document.getElementById("door3");
+    door1.removeEventListener("click", door1Handler);
+    door2.removeEventListener("click", door2Handler);
+    door3.removeEventListener("click", door3Handler);
+}
 
 //-
-//FIXME: Cambiar el nombre de la función a algo más descriptivo y VARIABLES
+//FIXME: Corregir RESET, no revuelve los valores como se debe
 //-
 function handleDoorClick(doorNumber) {
     const doorValue = document.getElementById(`door${doorNumber}`).dataset.value;
     var label = `Labeldoor${doorNumber}`;
     document.getElementById(label).innerHTML = "YOU DOOR!";
     alert(`You clicked on door ${doorNumber}`);
+
+    //Eventlistener para la puerta seleccionada
+    removeAllDoorClicks(); // Eliminar todos los event listeners de las puertas
 
     // Llamar a la función para seleccionar una puerta no elegida
     var MontyDoor = montyDoorSelect(doorNumber); 
@@ -113,6 +129,7 @@ function resetgame() {
 function YouWinOrLose(WinOrLose) {
     // Mostrar el resultado
     const resultElement = document.createElement("h2"); // Crear un nuevo elemento <h2>
+    resultElement.id = "WinOrLose"; // Asignar un ID al elemento
     if (WinOrLose) {
         resultElement.textContent = "YOU WIN!"; // Establecer el texto
         resultElement.style.color = "green"; // Opcional: Estilo para el texto
@@ -131,11 +148,17 @@ function addResetButton() {
     resetButton.style.marginTop = "20px"; // Opcional: Estilo para el botón
     resetButton.style.padding = "10px 20px";
     resetButton.style.fontSize = "16px";
-
     // Agregar el evento click al botón
     resetButton.addEventListener("click", () => {
         resetgame(); // Llamar a la función resetgame
         resetButton.remove(); // Eliminar el botón después de ejecutarse
+        //FIXME: Corregir el mensaje de resultado de WIN o LOSE. Solo elimina el primero enla iteracion.
+        document.getElementById("WinOrLose").textContent = ""; // Ocultar el mensaje de resultado
+        //-
+        door1.addEventListener("click", door1Handler);
+        door2.addEventListener("click", door2Handler);
+        door3.addEventListener("click", door3Handler);
+
     });
 
     // Agregar el botón al final del <body>
