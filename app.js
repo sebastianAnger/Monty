@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     doors.forEach((door, index) => {
         door.dataset.value = values[index]; // Usar dataset para almacenar el valor
     });
+    console.log(values);
 
     // Agregar eventos usando funciones nombradas
     door1.addEventListener("click", door1Handler);
@@ -33,9 +34,6 @@ function removeAllDoorClicks() {
     door3.removeEventListener("click", door3Handler);
 }
 
-//-
-//FIXME: Corregir RESET, no revuelve los valores como se debe
-//-
 function handleDoorClick(doorNumber) {
     const doorValue = document.getElementById(`door${doorNumber}`).dataset.value;
     var label = `Labeldoor${doorNumber}`;
@@ -106,6 +104,7 @@ function montyDoorSelect(doorNumber) {
         const label = `Labeldoor${MontyDoor}`;
         document.getElementById(label).innerHTML = "MONTY DOOR!";
         console.log(`MONTY DOOR: Door ${MontyDoor}, Value: ${MontyValue}`);
+        OpenDoorAnimation(MontyDoor, "src/OpenDoor.png");
         alert(`Monty abrio la puerta numero ${MontyDoor} donde no hay premio`);
         return MontyDoor; // Retornar la puerta de Monty
     }
@@ -116,14 +115,21 @@ function getRemainingDoor(doorNumber, MontyDoor) {
     const remainingDoor = doors.find(door => door !== doorNumber && door !== MontyDoor); // Filtrar la puerta restante
     return remainingDoor;
 }
+
 function resetgame() {
     // Reiniciar el juego
     const doors = [1, 2, 3];
-    doors.forEach(door => {
+    const values = ["true", "false", "false"].sort(() => Math.random() - 0.5);
+    console.log(values);
+    doors.forEach((door, index) => {
         const doorElement = document.getElementById(`door${door}`);
-        doorElement.dataset.value = Math.random() < 0.5 ? "true" : "false"; // Asignar un nuevo valor aleatorio
+        doorElement.dataset.value = values[index]; // Asignar el valor mezclado
         document.getElementById(`Labeldoor${door}`).innerHTML = ""; // Limpiar las etiquetas
     });
+    const resultElement = document.getElementById("WinOrLose");
+    if (resultElement) {
+        resultElement.remove();
+    }
 }
 
 function YouWinOrLose(WinOrLose) {
@@ -152,8 +158,6 @@ function addResetButton() {
     resetButton.addEventListener("click", () => {
         resetgame(); // Llamar a la función resetgame
         resetButton.remove(); // Eliminar el botón después de ejecutarse
-        //FIXME: Corregir el mensaje de resultado de WIN o LOSE. Solo elimina el primero enla iteracion.
-        document.getElementById("WinOrLose").textContent = ""; // Ocultar el mensaje de resultado
         //-
         door1.addEventListener("click", door1Handler);
         door2.addEventListener("click", door2Handler);
@@ -165,10 +169,18 @@ function addResetButton() {
     document.body.appendChild(resetButton);
 }
 
-//TODO: Boton de reinicio de juego
+function OpenDoorAnimation(doorNumber, newImageSrc) {
+    const doorImg = document.getElementById(`door${doorNumber}`);
+    if (doorImg) {
+        doorImg.src = newImageSrc;
+    }
+    // Para abrir la puerta 2 y mostrar la imagen "OpenDoor.png"
+    //OpenDoorAnimation(2, "src/OpenDoor.png");
+}
+
 
 //TODO: Tabla de resultados de juego
 
 //TODO: Animacion de puertas al abrirse y cerrarse
 
-//TODO: Subir una primera version a github y luego una version final con todas las mejoras y optimizaciones
+//TODO: Crear diseño de puerta de seleccion
