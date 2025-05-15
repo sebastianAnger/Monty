@@ -39,6 +39,7 @@ function handleDoorClick(doorNumber) {
     var label = `Labeldoor${doorNumber}`;
     document.getElementById(label).innerHTML = "YOU DOOR!";
     alert(`You clicked on door ${doorNumber}`);
+    OpenDoorAnimation(doorNumber, "src/SelectDoor.png");
 
     //Eventlistener para la puerta seleccionada
     removeAllDoorClicks(); // Eliminar todos los event listeners de las puertas
@@ -68,8 +69,12 @@ function handleDoorClick(doorNumber) {
         // Mostrar el resultado
         if (cambiopuertaValue === "true") {
             YouWinOrLose(true);
+            OpenDoorAnimation(cambiopuerta, "src/WinDoor.png");
         } else {
             YouWinOrLose(false);
+            OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
+            OpenDoorAnimation(getRemainingDoor(doorNumber, MontyDoor), "src/WinDoor.png");
+            document.getElementById(`Labeldoor${getRemainingDoor(doorNumber, MontyDoor)}`).innerHTML = "PUERTA GANADORA!";
         }
        // document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
 
@@ -125,6 +130,7 @@ function resetgame() {
         const doorElement = document.getElementById(`door${door}`);
         doorElement.dataset.value = values[index]; // Asignar el valor mezclado
         document.getElementById(`Labeldoor${door}`).innerHTML = ""; // Limpiar las etiquetas
+        OpenDoorAnimation(door, "src/Closedoor.png");
     });
     const resultElement = document.getElementById("WinOrLose");
     if (resultElement) {
@@ -181,6 +187,8 @@ function OpenDoorAnimation(doorNumber, newImageSrc) {
 
 //TODO: Tabla de resultados de juego
 
-//TODO: Animacion de puertas al abrirse y cerrarse
+//TODO: Borrar comentarios innecesarios
 
-//TODO: Crear diseño de puerta de seleccion
+//TODO: Diseño de pagina web
+
+//TODO: Preparacion para subir a github la primera aplicacion Publica.
