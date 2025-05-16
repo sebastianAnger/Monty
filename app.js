@@ -41,8 +41,8 @@ function handleDoorClick(doorNumber) {
     alert(`You clicked on door ${doorNumber}`);
     OpenDoorAnimation(doorNumber, "src/SelectDoor.png");
 
-    //Eventlistener para la puerta seleccionada
-    removeAllDoorClicks(); // Eliminar todos los event listeners de las puertas
+    //Eventlistener para la puerta seleccionada - Eliminar todos los event listeners de las puertas
+    removeAllDoorClicks();
 
     // Llamar a la función para seleccionar una puerta no elegida
     var MontyDoor = montyDoorSelect(doorNumber); 
@@ -74,13 +74,11 @@ function handleDoorClick(doorNumber) {
             YouWinOrLose(false);
             OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
             OpenDoorAnimation(getRemainingDoor(doorNumber, MontyDoor), "src/WinDoor.png");
-            document.getElementById(`Labeldoor${getRemainingDoor(doorNumber, MontyDoor)}`).innerHTML = "PUERTA GANADORA!";
+            const winningDoor = getRemainingDoor(doorNumber, MontyDoor); //Agregar la puerta ganadora
+            document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!";
         }
-       // document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
-
         // Agregar el botón de reinicio
         addResetButton();
-
     }, 1000); // Espera 2 segundos (2000 ms) antes de ejecutar el código
 
     console.log(`YOU DOOR: ${doorNumber}, ${document.getElementById(`door${doorNumber}`).dataset.value}`);
@@ -97,7 +95,6 @@ function montyDoorSelect(doorNumber) {
     for (let i = 0; i < unchosenDoors.length; i++) {
         const currentDoor = unchosenDoors[i];
         const currentValue = document.getElementById(`door${currentDoor}`).dataset.value;
-
         if (currentValue !== "true") {
             MontyDoor = currentDoor;
             MontyValue = currentValue;
@@ -143,12 +140,12 @@ function YouWinOrLose(WinOrLose) {
     const resultElement = document.createElement("h2"); // Crear un nuevo elemento <h2>
     resultElement.id = "WinOrLose"; // Asignar un ID al elemento
     if (WinOrLose) {
-        resultElement.textContent = "YOU WIN!"; // Establecer el texto
-        resultElement.style.color = "green"; // Opcional: Estilo para el texto
+        resultElement.textContent = "YOU WIN!";
+        resultElement.style.color = "green";
         document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
     } else {
-        resultElement.textContent = "YOU LOSE!"; // Establecer el texto
-        resultElement.style.color = "red"; // Opcional: Estilo para el texto
+        resultElement.textContent = "YOU LOSE!";
+        resultElement.style.color = "red";
         document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
     }   
 }
@@ -156,15 +153,15 @@ function YouWinOrLose(WinOrLose) {
 function addResetButton() {
     // Crear el botón
     const resetButton = document.createElement("button");
-    resetButton.textContent = "Reiniciar Juego"; // Texto del botón
-    resetButton.style.marginTop = "20px"; // Opcional: Estilo para el botón
+    resetButton.textContent = "Reiniciar Juego";
+    resetButton.style.marginTop = "20px";
     resetButton.style.padding = "10px 20px";
     resetButton.style.fontSize = "16px";
-    // Agregar el evento click al botón
+    
     resetButton.addEventListener("click", () => {
         resetgame(); // Llamar a la función resetgame
         resetButton.remove(); // Eliminar el botón después de ejecutarse
-        //-
+        //Habilitar nuevamente los event listeners de las puertas
         door1.addEventListener("click", door1Handler);
         door2.addEventListener("click", door2Handler);
         door3.addEventListener("click", door3Handler);
@@ -180,14 +177,10 @@ function OpenDoorAnimation(doorNumber, newImageSrc) {
     if (doorImg) {
         doorImg.src = newImageSrc;
     }
-    // Para abrir la puerta 2 y mostrar la imagen "OpenDoor.png"
-    //OpenDoorAnimation(2, "src/OpenDoor.png");
 }
 
 
 //TODO: Tabla de resultados de juego
-
-//TODO: Borrar comentarios innecesarios
 
 //TODO: Diseño de pagina web
 
