@@ -185,3 +185,11 @@ function OpenDoorAnimation(doorNumber, newImageSrc) {
 //TODO: Diseño de pagina web
 
 //TODO: Preparacion para subir a github la primera aplicacion Publica.
+
+//TODO: Corregir animacion en animacion, donde eleccion 1 es la puerta ganadora y la puerta 2 es la que abre monty, y la puerta 3 es la que elige el jugador cambiando. La animacion es erronea y no se ve bien. pero la logica es la correcta.
+//Ejemplo:
+// Array(3) [ "true", "false", "false" ]
+// app.js:125:13
+// MONTY DOOR: Door 2, Value: false app.js:108:17
+// YOU DOOR: 1, true app.js:84:13
+// Puerta final: 3, Valor: fals

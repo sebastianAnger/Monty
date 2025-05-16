@@ -3,26 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monty</title>
+    <title>Monty Hall Game</title>
     <h1>LEST PLAY!</h1>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
+    <nav class="container-fluid">
+        <ul><li><strong>Monty Hall Game</strong></li></ul>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Reglas</a></li>
+            <li><a href="#" role="button">Jugar</a></li>
+        </ul>
+    </nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+            <h2>¡Bienvenido al desafío de Monty Hall!</h2>
+            <h3>¿Puedes encontrar el premio escondido?</h3>
+            </hgroup>
+            <p>Elige una puerta y prueba tu intuición. ¿Te quedarás con tu elección original o cambiarás?</p>
+<!--
+FIXME: Conseguir presentador
+-->
+            <!-- Presentador y cuadro de diálogo -->
+            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
+            <figure style="max-width: 300px;">
+                <img src="A_colorful,_cartoon-style_digital_illustration_fea.png" alt="Presentador del juego" style="width: 100%; border-radius: 10px;" />
+                <figcaption style="text-align: center;">Nuestro presentador te guiará</figcaption>
+            </figure>
+            <div style="max-width: 500px; background-color: #f0f4f8; border-radius: 10px; padding: 1rem; font-style: italic;">
+                “¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”
+            </div>
+            </div>
 
-<body>
-    <h2>Monty Hall Problem</h2>
-    <p>Welcome to the Monty Hall problem simulation! Choose a door and see if you can win a car!</p>
-    <form id="doorForm">
-        <label for="door">Choose a door (1, 2, or 3):</label>
-        <div id="doors" style="display: flex; justify-content:  space-around;">
-                <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door1">
-                <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door2">
-                <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door3">
-        </div>
-        <div id="doorLabels" style="display: flex; justify-content:  space-around;">
-            <h3 id="Labeldoor1"></h3>
-            <h3 id="Labeldoor2"></h3>
-            <h3 id="Labeldoor3"></h3>                    
-        </div>
-    </form>
+            <!-- Juego interactivo -->
+            <h3>Selecciona una puerta:</h3>
+            <p>Haz clic en una de las puertas para comenzar.</p>
+
+            <form id="doorForm">
+                <label for="door">Choose a door (1, 2, or 3):</label>
+                <div id="doors" style="display: flex; justify-content:  space-around;">
+                        <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door1">
+                        <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door2">
+                        <img src="src\Closedoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door3">
+                </div>
+                <div id="doorLabels" style="display: flex; justify-content: space-around; margin-top: 1rem;">
+                    <h3 id="Labeldoor1"></h3>
+                    <h3 id="Labeldoor2"></h3>
+                    <h3 id="Labeldoor3"></h3>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+<footer><section aria-label="Subscribe example">
+    <div class="container">
+      <article>
+        <hgroup>
+          <h2>¿Quieres más retos?</h2>
+          <h3>Suscríbete y recibe nuevos juegos mentales cada semana</h3>
+        </hgroup>
+        <form class="grid">
+          <input type="text" id="firstname" name="firstname" placeholder="Tu nombre" aria-label="Tu nombre" required />
+          <input type="email" id="email" name="email" placeholder="Tu correo electrónico" aria-label="Tu correo electrónico" required />
+          <button type="submit" onclick="event.preventDefault()">Suscribirse</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container">
+    <small>
+      <a href="#">Términos</a> • <a href="#">Privacidad</a>
+    </small>
+  </footer></footer>
     <script src="app.js"></script>
 </body>
 </html>
