@@ -45,11 +45,11 @@ function handleDoorClick(doorNumber) {
     removeAllDoorClicks();
 
     // Llamar a la función para seleccionar una puerta no elegida
-    var MontyDoor = montyDoorSelect(doorNumber); 
-    
+    var MontyDoor = montyDoorSelect(doorNumber);
+
     setTimeout(() => {
         const MyChoice = confirm(`MONTY quiere saber si quieres cambiar de puerta o mantener tu eleccion en la puerta ${doorNumber}. Preciona 'Aceptar' para cambiar de puerta o 'Cancelar' para mantener tu eleccion`); // Cambiar el nombre de la variable a algo más descriptivo
-        let cambiopuerta; 
+        let cambiopuerta;
         let cambiopuertaValue;
 
         if (MyChoice) {
@@ -147,7 +147,7 @@ function YouWinOrLose(WinOrLose) {
         resultElement.textContent = "YOU LOSE!";
         resultElement.style.color = "red";
         document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
-    }   
+    }
 }
 
 function addResetButton() {
@@ -157,7 +157,7 @@ function addResetButton() {
     resetButton.style.marginTop = "20px";
     resetButton.style.padding = "10px 20px";
     resetButton.style.fontSize = "16px";
-    
+
     resetButton.addEventListener("click", () => {
         resetgame(); // Llamar a la función resetgame
         resetButton.remove(); // Eliminar el botón después de ejecutarse

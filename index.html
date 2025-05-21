@@ -4,17 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monty Hall Game</title>
-    <h1>LEST PLAY!</h1>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
 </head>
-    <nav class="container-fluid">
-        <ul><li><strong>Monty Hall Game</strong></li></ul>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Reglas</a></li>
-            <li><a href="#" role="button">Jugar</a></li>
-        </ul>
-    </nav>
 <main class="container">
     <div class="grid">
         <section>
@@ -26,16 +17,56 @@
 <!--
 FIXME: Conseguir presentador
 -->
-            <!-- Presentador y cuadro de diálogo -->
-            <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 2rem;">
-            <figure style="max-width: 300px;">
-                <img src="A_colorful,_cartoon-style_digital_illustration_fea.png" alt="Presentador del juego" style="width: 100%; border-radius: 10px;" />
-                <figcaption style="text-align: center;">Nuestro presentador te guiará</figcaption>
-            </figure>
-            <div style="max-width: 500px; background-color: #f0f4f8; border-radius: 10px; padding: 1rem; font-style: italic;">
-                “¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”
-            </div>
-            </div>
+            <!-- Presentador y cuadro de diálogo src\MontyH.png -->
+            <div class="presenter-section" style="display: flex; align-items: center; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
+  <!-- Presentador -->
+  <figure style="flex: 0 0 auto; width: 200px; margin: 0;">
+    <img src="src\MontyH.png" alt="Presentador del juego" style="width: 100%; height: auto; border-radius: 10px;" />
+  </figure>
+
+  <!-- Globo de diálogo -->
+  <div style="position: relative; max-width: 500px;">
+    <div id="dialogo-presentador"
+         style="
+           background-color: #e0f0ff;
+           border: 2px solid #007acc;
+           border-radius: 15px;
+           padding: 1rem 1.5rem;
+           font-style: italic;
+           font-size: 1.1rem;
+           box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+         ">
+      “¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”
+    </div>
+
+    <!-- Triángulo que apunta al presentador -->
+    <div style="
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: -20px;
+      width: 0;
+      height: 0;
+      border-top: 15px solid transparent;
+      border-bottom: 15px solid transparent;
+      border-right: 20px solid #007acc;
+      z-index: -1;
+    "></div>
+
+    <div style="
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: -18px;
+      width: 0;
+      height: 0;
+      border-top: 13px solid transparent;
+      border-bottom: 13px solid transparent;
+      border-right: 18px solid #e0f0ff;
+      z-index: 0;
+    "></div>
+  </div>
+</div>
 
             <!-- Juego interactivo -->
             <h3>Selecciona una puerta:</h3>
@@ -57,22 +88,7 @@ FIXME: Conseguir presentador
         </section>
     </div>
 </main>
-<footer><section aria-label="Subscribe example">
-    <div class="container">
-      <article>
-        <hgroup>
-          <h2>¿Quieres más retos?</h2>
-          <h3>Suscríbete y recibe nuevos juegos mentales cada semana</h3>
-        </hgroup>
-        <form class="grid">
-          <input type="text" id="firstname" name="firstname" placeholder="Tu nombre" aria-label="Tu nombre" required />
-          <input type="email" id="email" name="email" placeholder="Tu correo electrónico" aria-label="Tu correo electrónico" required />
-          <button type="submit" onclick="event.preventDefault()">Suscribirse</button>
-        </form>
-      </article>
-    </div>
-  </section>
-
+<footer>
   <footer class="container">
     <small>
       <a href="#">Términos</a> • <a href="#">Privacidad</a>
