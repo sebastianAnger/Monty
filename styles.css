@@ -1,0 +1,107 @@
+/* === Estilo general de la página === */
+body {
+  background: #11191f;
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ajuste de ancho del contenido principal */
+.contenedor-principal {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Presentador y cuadro de diálogo */
+.presenter-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.presenter-section figure {
+  flex: 0 0 auto;
+  width: 200px;
+  margin: 0;
+}
+
+.presenter-section img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.dialogo-presentador-wrapper {
+  position: relative;
+  max-width: 500px;
+}
+
+#dialogo-presentador {
+  background-color: #e0f0ff;
+  border: 2px solid #007acc;
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  font-style: italic;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+.dialogo-presentador-wrapper .globo-borde {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 20px solid #007acc;
+  z-index: -1;
+}
+
+.dialogo-presentador-wrapper .globo-fondo {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: -18px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-bottom: 13px solid transparent;
+  border-right: 18px solid #e0f0ff;
+  z-index: 0;
+}
+
+/* Estilo para imágenes de puertas */
+#doors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+#doors img {
+  width: 195px;
+  height: 285px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto al pasar el mouse */
+#doors img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

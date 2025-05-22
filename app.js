@@ -45,11 +45,11 @@ function handleDoorClick(doorNumber) {
     removeAllDoorClicks();
 
     // Llamar a la función para seleccionar una puerta no elegida
-    var MontyDoor = montyDoorSelect(doorNumber); 
-    
+    var MontyDoor = montyDoorSelect(doorNumber);
+
     setTimeout(() => {
         const MyChoice = confirm(`MONTY quiere saber si quieres cambiar de puerta o mantener tu eleccion en la puerta ${doorNumber}. Preciona 'Aceptar' para cambiar de puerta o 'Cancelar' para mantener tu eleccion`); // Cambiar el nombre de la variable a algo más descriptivo
-        let cambiopuerta; 
+        let cambiopuerta;
         let cambiopuertaValue;
 
         if (MyChoice) {
@@ -147,7 +147,7 @@ function YouWinOrLose(WinOrLose) {
         resultElement.textContent = "YOU LOSE!";
         resultElement.style.color = "red";
         document.body.appendChild(resultElement); // Agregar el elemento al final del <body>
-    }   
+    }
 }
 
 function addResetButton() {
@@ -157,7 +157,7 @@ function addResetButton() {
     resetButton.style.marginTop = "20px";
     resetButton.style.padding = "10px 20px";
     resetButton.style.fontSize = "16px";
-    
+
     resetButton.addEventListener("click", () => {
         resetgame(); // Llamar a la función resetgame
         resetButton.remove(); // Eliminar el botón después de ejecutarse
@@ -185,3 +185,11 @@ function OpenDoorAnimation(doorNumber, newImageSrc) {
 //TODO: Diseño de pagina web
 
 //TODO: Preparacion para subir a github la primera aplicacion Publica.
+
+//TODO: Corregir animacion en animacion, donde eleccion 1 es la puerta ganadora y la puerta 2 es la que abre monty, y la puerta 3 es la que elige el jugador cambiando. La animacion es erronea y no se ve bien. pero la logica es la correcta.
+//Ejemplo:
+// Array(3) [ "true", "false", "false" ]
+// app.js:125:13
+// MONTY DOOR: Door 2, Value: false app.js:108:17
+// YOU DOOR: 1, true app.js:84:13
+// Puerta final: 3, Valor: fals
