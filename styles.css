@@ -112,3 +112,47 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
+
+/* Banner superior del sitio */
+.banner-juego {
+  background-color: #11191f;
+  color: #f0f0f0;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-bottom: 3px solid #007acc;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.banner-juego h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  font-weight: 700;
+  color: #00c2ff;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 5px rgba(0, 194, 255, 0.5);
+}
+
+.banner-juego p {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #bbbbbb;
+}
+
+/* === Botón especial para fondo claro === */
+.next-btn, .reset-btn, .chan-btn, .keep-btn {
+  background-color: #007acc;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.next-btn:hover, .reset-btn:hover, .chan-btn:hover, .keep-btn:hover {
+  background-color: #005f99;
+}

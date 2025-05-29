@@ -1,4 +1,3 @@
-// app.js
 function door1Handler() { handleDoorClick(1); }
 function door2Handler() { handleDoorClick(2); }
 function door3Handler() { handleDoorClick(3); }
@@ -35,72 +34,22 @@ function removeAllDoorClicks() {
 }
 
 function handleDoorClick(doorNumber) {
-    const doorValue = document.getElementById(`door${doorNumber}`).dataset.value;
-    var label = `Labeldoor${doorNumber}`;
-    document.getElementById(label).innerHTML = "YOU DOOR!";
-    //alert(`You clicked on door ${doorNumber}`);
+    //const doorValue = document.getElementById(`door${doorNumber}`).dataset.value;
+    var label = `Labeldoor${doorNumber}`; //POR ELIMINAR
+    document.getElementById(label).innerHTML = "YOU DOOR!"; //POR ELIMINAR
     OpenDoorAnimation(doorNumber, "src/SelectDoor.png");
 
     //DIALOGO DE ELECCION
     var dialogoMyDoor = document.getElementById("dialogo-presentador");
-    dialogoMyDoor.innerHTML = "Has elegido la puerta " + doorNumber + " y el valor es: " + doorValue;
+    dialogoMyDoor.innerHTML = "Has elegido la puerta Numero " + doorNumber;
     addNextButton(doorNumber);
-
-    //Eventlistener para la puerta seleccionada - Eliminar todos los event listeners de las puertas
-    removeAllDoorClicks();
-
-    //FIXME:Corregir Errores por animacion y logica del programa
-    //FIXME:Cambiar puerta de seleccion algo  mejor
-    //FIXME: Borrar y liempiar codigo comentado
-    // Llamar a la función para seleccionar una puerta no elegida
-    //var MontyDoor = addNextButton(doorNumber);
-/* #region Antiguio SETTimeout
-#region Antiguio SETTimeout
-    setTimeout(() => {
-        // Mostrar el diálogo de elección
-        const MyChoice = confirm(`MONTY quiere saber si quieres cambiar de puerta o mantener tu eleccion en la puerta ${doorNumber}. Preciona 'Aceptar' para cambiar de puerta o 'Cancelar' para mantener tu eleccion`); // Cambiar el nombre de la variable a algo más descriptivo
-        let cambiopuerta;
-        let cambiopuertaValue;
-
-        if (MyChoice) {
-            //Buscar la puerta restante
-            cambiopuerta = getRemainingDoor(doorNumber, MontyDoor); // Obtener la puerta restante
-            cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
-            document.getElementById(`Labeldoor${cambiopuerta}`).innerHTML = "CAMBIO DE PUERTA!";
-        }else {
-            // El usuario decide mantener su elección
-            console.log("El usuario decidió mantener su elección.");
-            cambiopuerta = doorNumber;
-        }
-        // Obtener el valor de la puerta final
-        cambiopuertaValue = document.getElementById(`door${cambiopuerta}`).dataset.value;
-        //console.log(`Valor de cambiopuertavalue obtenido: ${cambiopuertaValue}`);
-        console.log(`Puerta final: ${cambiopuerta}, Valor: ${cambiopuertaValue}`);
-
-        // Mostrar el resultado
-        if (cambiopuertaValue === "true") {
-            YouWinOrLose(true);
-            OpenDoorAnimation(cambiopuerta, "src/WinDoor.png");
-        } else {
-            YouWinOrLose(false);
-            OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
-            OpenDoorAnimation(getRemainingDoor(cambiopuerta, MontyDoor), "src/WinDoor.png");
-            const winningDoor = getRemainingDoor(cambiopuerta, MontyDoor); //Agregar la puerta ganadora
-            document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!";
-        }
-        // Agregar el botón de reinicio
-        addResetButton();
-    }, 5000); // Espera 2 segundos (2000 ms) antes de ejecutar el código
-
-    console.log(`YOU DOOR: ${doorNumber}, ${document.getElementById(`door${doorNumber}`).dataset.value}`);
-#endregion    */
+    removeAllDoorClicks(); //Eliminar todos los event listeners de las puertas
 }
 
 function changeDoor(doorNumber, MontyDoor) {
     // Función para manejar el evento de clic en la puerta
-    //DIALOGO DE ELECCION
     var dialogoMyDoor = document.getElementById("dialogo-presentador");
-    dialogoMyDoor.innerHTML = "Vas a cambiar de puerta?";
+    dialogoMyDoor.innerHTML = "Abri la puerta " + MontyDoor + " No hay regalo. ¿Vas a cambiar de puerta?  ";
 //#region Creacion de Botones
     // Crear el botón
         const changButton = document.createElement("button");
@@ -119,7 +68,7 @@ function changeDoor(doorNumber, MontyDoor) {
             //Buscar la puerta restante
             cambiopuerta = getRemainingDoor(doorNumber, MontyDoor); // Obtener la puerta restante
             cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
-            document.getElementById(`Labeldoor${cambiopuerta}`).innerHTML = "CAMBIO DE PUERTA!";
+            document.getElementById(`Labeldoor${cambiopuerta}`).innerHTML = "CAMBIO DE PUERTA!"; //POR ELIMINAR
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
         });
         //KeepButton
@@ -127,9 +76,12 @@ function changeDoor(doorNumber, MontyDoor) {
             // El usuario decide mantener su elección
             console.log("El usuario decidió mantener su elección.");
             cambiopuerta = doorNumber;
+            cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
+            console.log(`Puerta final: ${cambiopuerta} debe ser igual a ${doorNumber}, Valor: ${cambiopuertaValue}, MontyDoor: ${MontyDoor}`);
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
         });
         // Agregar el botón al dialogo
+    document.getElementById("dialogo-presentador").appendChild(document.createElement("br")); // Salto de línea
     document.getElementById("dialogo-presentador").appendChild(changButton);
     document.getElementById("dialogo-presentador").appendChild(keepButton);
     // Aquí puedes agregar la lógica para cambiar de puerta
@@ -145,7 +97,7 @@ function showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue){
             OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
             OpenDoorAnimation(getRemainingDoor(cambiopuerta, MontyDoor), "src/WinDoor.png");
             const winningDoor = getRemainingDoor(cambiopuerta, MontyDoor); //Agregar la puerta ganadora
-            document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!";
+            document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!"; //POR ELIMINAR
         }
         // Agregar el botón de reinicio
         addResetButton();
@@ -155,7 +107,6 @@ function showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue){
 function montyDoorSelect(doorNumber) {
     const doors = [1, 2, 3];
     const unchosenDoors = doors.filter(door => door !== doorNumber); // Filtrar las puertas no seleccionadas
-
     let MontyDoor;
     let MontyValue;
 
@@ -171,15 +122,12 @@ function montyDoorSelect(doorNumber) {
     }
 
     if (MontyDoor) {
-        const label = `Labeldoor${MontyDoor}`;
-        document.getElementById(label).innerHTML = "MONTY DOOR!";
+        const label = `Labeldoor${MontyDoor}`; //POR ELIMINAR
+        document.getElementById(label).innerHTML = "MONTY DOOR!"; //POR ELIMINAR
         console.log(`MONTY DOOR: Door ${MontyDoor}, Value: ${MontyValue}`);
         OpenDoorAnimation(MontyDoor, "src/OpenDoor.png");
-        //alert(`Monty abrio la puerta numero ${MontyDoor} donde no hay premio`);
         //DIALOGO DE ELECCION
         montyImgAnimation("src/MontyS.png"); // Cambiar la imagen de Monty
-        var dialogoMyDoor = document.getElementById("dialogo-presentador");
-        dialogoMyDoor.innerHTML = "Abri la puerta " + MontyDoor + " y el valor es: " + MontyValue + " No hay regalo, pero puedes cambiar tu eleccion";
         return MontyDoor; // Retornar la puerta de Monty
     }
 }
@@ -198,7 +146,7 @@ function resetgame() {
     doors.forEach((door, index) => {
         const doorElement = document.getElementById(`door${door}`);
         doorElement.dataset.value = values[index]; // Asignar el valor mezclado
-        document.getElementById(`Labeldoor${door}`).innerHTML = ""; // Limpiar las etiquetas
+        document.getElementById(`Labeldoor${door}`).innerHTML = ""; // Limpiar las etiquetas //POR ELIMINAR
         OpenDoorAnimation(door, "src/Closedoor.png");
         montyImgAnimation("src/MontyH.png"); // Cambiar la imagen de Monty a la de inicio
         document.getElementById("dialogo-presentador").innerHTML = "“¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”"; // Limpiar el mensaje del presentador  
@@ -213,6 +161,7 @@ function YouWinOrLose(WinOrLose) {
         montyImgAnimation("src/MontyW.png"); // Cambiar la imagen de Monty a la de ganador
     } else {
         resultElement.textContent = "LOSIENTO PERDISTE!          Puedes reiniciar el juego     ";
+        montyImgAnimation("src/MontyL.png"); // Cambiar la imagen de Monty a la de perededor
     }
 }
 
@@ -232,6 +181,7 @@ function addResetButton() {
 
     });
     // Agregar el botón al dialogo
+    document.getElementById("dialogo-presentador").appendChild(document.createElement("br")); // Salto de línea
     document.getElementById("dialogo-presentador").appendChild(resetButton);
 }
 
@@ -262,6 +212,7 @@ function addNextButton(doorNumber){
             //return m1; // Retornar la puerta de Monty
         });
         // Agregar el botón al dialogo
+    document.getElementById("dialogo-presentador").appendChild(document.createElement("br")); // Salto de línea
     document.getElementById("dialogo-presentador").appendChild(nextButton);
 }
 
@@ -269,3 +220,5 @@ function addNextButton(doorNumber){
 //TODO: Tabla de resultados de juego
 
 //TODO: Preparacion para subir a github la primera aplicacion Publica.
+
+//FIXME: Borrar y liempiar codigo comentado. Eliminar el label de la puerta seleccionada

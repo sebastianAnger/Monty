@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+<body>
+<header class="banner-juego">
+  <h1>Monty Hall Game</h1>
+  <p>El problema de probabilidad donde las matemáticas siempre ganan</p>
+</header>
 <main class="contenedor-principal">
-  <h2 style="display: flex; justify-content:  space-around;">¡Bienvenido al desafío de Monty Hall!</h2>
     <div class="grid" style="display: flex; justify-content:  space-around;">
         <section>
-<!--
-FIXME: Utilizar una imagen generada por DALL-E para presentar el juego
-TODO: Utilizar cuadrio de dialogo en vez de los Labels
-TODO: Utilizar diferentes posiciones del presentador (elegir, ganar y perder)
-FIXME: Posible creacion o diseño de seleccion de puertas por Design Chatgpt
--->
         <!-- Presentador y cuadro de diálogo -->
         <div class="presenter-section">
           <figure>
@@ -31,7 +29,6 @@ FIXME: Posible creacion o diseño de seleccion de puertas por Design Chatgpt
             <div class="globo-fondo"></div>
           </div>
         </div>
-
             <!-- Juego interactivo -->
             <form id="doorForm">
                 <div id="doors" style="display: flex; justify-content:  space-around;">
@@ -39,10 +36,10 @@ FIXME: Posible creacion o diseño de seleccion de puertas por Design Chatgpt
                         <img src="src\Closedoor.png" id="door2">
                         <img src="src\Closedoor.png" id="door3">
                 </div>
-                <div id="doorLabels" style="display: flex; justify-content: space-around; margin-top: 1rem;">
-                    <h3 id="Labeldoor1"></h3>
-                    <h3 id="Labeldoor2"></h3>
-                    <h3 id="Labeldoor3"></h3>
+                <div id="doorLabels" style="display: flex; justify-content: space-around; margin-top: 1rem;"> <!-- Por Eliminar -->
+                    <h3 id="Labeldoor1"></h3> <!-- Por Eliminar -->
+                    <h3 id="Labeldoor2"></h3> <!-- Por Eliminar -->
+                    <h3 id="Labeldoor3"></h3> <!-- Por Eliminar -->
                 </div>
             </form>
         </section>
