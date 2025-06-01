@@ -50,7 +50,6 @@ function changeDoor(doorNumber, MontyDoor) {
     // Función para manejar el evento de clic en la puerta
     var dialogoMyDoor = document.getElementById("dialogo-presentador");
     dialogoMyDoor.innerHTML = "Abri la puerta " + MontyDoor + " No hay regalo. ¿Vas a cambiar de puerta?  ";
-//#region Creacion de Botones
     // Crear el botón
         const changButton = document.createElement("button");
         changButton.textContent = "Cambio de Puerta";
@@ -60,7 +59,6 @@ function changeDoor(doorNumber, MontyDoor) {
         keepButton.textContent = "Mantener de Puerta";
         keepButton.className = "keep-btn";
     // TerminaBoton
-//#endregion
         let cambiopuerta;
         let cambiopuertaValue;
 
@@ -70,6 +68,7 @@ function changeDoor(doorNumber, MontyDoor) {
             cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
             document.getElementById(`Labeldoor${cambiopuerta}`).innerHTML = "CAMBIO DE PUERTA!"; //POR ELIMINAR
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
+            localStorage.setItem("Cambio", "Si");
         });
         //KeepButton
         keepButton.addEventListener("click", () => {
@@ -79,6 +78,7 @@ function changeDoor(doorNumber, MontyDoor) {
             cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
             console.log(`Puerta final: ${cambiopuerta} debe ser igual a ${doorNumber}, Valor: ${cambiopuertaValue}, MontyDoor: ${MontyDoor}`);
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
+            localStorage.setItem("Cambio", "No");
         });
         // Agregar el botón al dialogo
     document.getElementById("dialogo-presentador").appendChild(document.createElement("br")); // Salto de línea
@@ -92,12 +92,14 @@ function showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue){
         if (cambiopuertaValue === "true") {
             YouWinOrLose(true);
             OpenDoorAnimation(cambiopuerta, "src/WinDoor.png");
+            localStorageDoors(doorNumber, cambiopuertaValue);
         } else {
             YouWinOrLose(false);
             OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
             OpenDoorAnimation(getRemainingDoor(cambiopuerta, MontyDoor), "src/WinDoor.png");
             const winningDoor = getRemainingDoor(cambiopuerta, MontyDoor); //Agregar la puerta ganadora
             document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!"; //POR ELIMINAR
+            localStorageDoors(doorNumber, cambiopuertaValue);
         }
         // Agregar el botón de reinicio
         addResetButton();
@@ -149,7 +151,7 @@ function resetgame() {
         document.getElementById(`Labeldoor${door}`).innerHTML = ""; // Limpiar las etiquetas //POR ELIMINAR
         OpenDoorAnimation(door, "src/Closedoor.png");
         montyImgAnimation("src/MontyH.png"); // Cambiar la imagen de Monty a la de inicio
-        document.getElementById("dialogo-presentador").innerHTML = "“¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”"; // Limpiar el mensaje del presentador  
+        document.getElementById("dialogo-presentador").innerHTML = "“¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”"; // Limpiar el mensaje del presentador
     });
 }
 
@@ -216,9 +218,19 @@ function addNextButton(doorNumber){
     document.getElementById("dialogo-presentador").appendChild(nextButton);
 }
 
+function localStorageDoors(myDoor, cambiopuertaValue) {
+    //localStorage.setItem("DoorSelect", myDoor);
+    if (cambiopuertaValue === "true") {
+        var result = "Gano";
+        localStorage.setItem("Res", result);
+    }else {
+        var result = "Perdio";
+        localStorage.setItem("Res", result);
+    }
+}
 
-//TODO: Tabla de resultados de juego
+
+//TODO: Tabla de resultados de juego, Revisar tema de localStorage y sessionStorage.
 
 //TODO: Preparacion para subir a github la primera aplicacion Publica.
-
 //FIXME: Borrar y liempiar codigo comentado. Eliminar el label de la puerta seleccionada
