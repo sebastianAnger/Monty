@@ -68,7 +68,6 @@ function changeDoor(doorNumber, MontyDoor) {
             cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
             document.getElementById(`Labeldoor${cambiopuerta}`).innerHTML = "CAMBIO DE PUERTA!"; //POR ELIMINAR
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
-            localStorage.setItem("Cambio", "Si");
         });
         //KeepButton
         keepButton.addEventListener("click", () => {
@@ -78,7 +77,6 @@ function changeDoor(doorNumber, MontyDoor) {
             cambiopuertaValue= document.getElementById(`door${cambiopuerta}`).dataset.value; // Obtener el valor de la puerta restante
             console.log(`Puerta final: ${cambiopuerta} debe ser igual a ${doorNumber}, Valor: ${cambiopuertaValue}, MontyDoor: ${MontyDoor}`);
             showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue); // Mostrar el resultado
-            localStorage.setItem("Cambio", "No");
         });
         // Agregar el botón al dialogo
     document.getElementById("dialogo-presentador").appendChild(document.createElement("br")); // Salto de línea
@@ -92,14 +90,16 @@ function showDoors(doorNumber, MontyDoor, cambiopuerta, cambiopuertaValue){
         if (cambiopuertaValue === "true") {
             YouWinOrLose(true);
             OpenDoorAnimation(cambiopuerta, "src/WinDoor.png");
-            localStorageDoors(doorNumber, cambiopuertaValue);
+            localStorageDoors(doorNumber, cambiopuerta, cambiopuertaValue);
+            mostrarlista(); // Mostrar la lista de resultados
         } else {
             YouWinOrLose(false);
             OpenDoorAnimation(cambiopuerta, "src/OpenDoor.png");
             OpenDoorAnimation(getRemainingDoor(cambiopuerta, MontyDoor), "src/WinDoor.png");
             const winningDoor = getRemainingDoor(cambiopuerta, MontyDoor); //Agregar la puerta ganadora
             document.getElementById(`Labeldoor${winningDoor}`).innerHTML = "PUERTA GANADORA!"; //POR ELIMINAR
-            localStorageDoors(doorNumber, cambiopuertaValue);
+            localStorageDoors(doorNumber, cambiopuerta, cambiopuertaValue);
+            mostrarlista(); // Mostrar la lista de resultados
         }
         // Agregar el botón de reinicio
         addResetButton();
@@ -218,19 +218,52 @@ function addNextButton(doorNumber){
     document.getElementById("dialogo-presentador").appendChild(nextButton);
 }
 
-function localStorageDoors(myDoor, cambiopuertaValue) {
-    //localStorage.setItem("DoorSelect", myDoor);
-    if (cambiopuertaValue === "true") {
-        var result = "Gano";
-        localStorage.setItem("Res", result);
-    }else {
-        var result = "Perdio";
-        localStorage.setItem("Res", result);
-    }
+function mostrarlista(){
+    const localdatos = traerDatos(); // Traer los datos del localStorage
+    const tbody = document.querySelector("#listaResultados tbody");
+    tbody.innerHTML = "";
+    localdatos.forEach((datos, idx) => {
+        crealista({ ...datos, index: idx + 1 }, tbody);
+    });
 }
 
+function crealista(datos, tbody) {
+    //const lista = document.getElementById("listaResultados");
+    const fila = document.createElement("tr");
+    fila.innerHTML = `<td>${datos.index}</td><td>${datos.puertaElegida}</td><td>${datos.cambiopuerta}</td><td class="${datos.valorPuertaElegida}">${datos.valorPuertaElegida}</td>`;
+    tbody.appendChild(fila);
+}
 
-//TODO: Tabla de resultados de juego, Revisar tema de localStorage y sessionStorage.
+function localStorageDoors(myDoor, cambiopuerta, cambiopuertaValue) {
+    if(myDoor === cambiopuerta){
+        cambiopuerta = "No";
+    }else{cambiopuerta = "Si";}
+    //-
+    if(cambiopuertaValue === "true"){
+        cambiopuertaValue = "Gano";
+    }else{cambiopuertaValue = "Perdio";}
+    const localdatos = traerDatos(); // Traer los datos del localStorage
+    localdatos.push({
+        puertaElegida: myDoor,
+        cambiopuerta: cambiopuerta,
+        valorPuertaElegida: cambiopuertaValue
+    }); // Agregar la puerta elegida y su valor al array
+    localStorage.setItem("Resultados", JSON.stringify(localdatos)); // Guardar la puerta elegida por el usuario
+}
+
+function traerDatos() {
+    let resultados;
+    try {
+        const data = localStorage.getItem('Resultados');
+        resultados = data ? JSON.parse(data) : [];
+        if (!Array.isArray(resultados)) {
+            resultados = [];
+        }
+    } catch (e) {
+        resultados = [];
+    }
+    return resultados;
+}
 
 //TODO: Preparacion para subir a github la primera aplicacion Publica.
 //FIXME: Borrar y liempiar codigo comentado. Eliminar el label de la puerta seleccionada
