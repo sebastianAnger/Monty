@@ -3,26 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monty</title>
-    <h1>LEST PLAY!</h1>
+    <title>Monty Hall Game</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <h2>Monty Hall Problem</h2>
-    <p>Welcome to the Monty Hall problem simulation! Choose a door and see if you can win a car!</p>
-    <form id="doorForm">
-        <label for="door">Choose a door (1, 2, or 3):</label>
-        <div id="doors" style="display: flex; justify-content:  space-around;">
-                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door1">
-                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door2">
-                <img src="src\Opendoor.png" style="width: 100px; height: 150px; cursor: pointer;" id="door3">
+<header class="banner-juego">
+  <h1>Monty Hall Game</h1>
+  <p>El problema de probabilidad donde las matemáticas siempre ganan</p>
+</header>
+<main class="contenedor-principal">
+    <div class="grid" style="display: flex; justify-content:  space-around;">
+        <section class="Section-presentador">
+        <!-- Presentador y cuadro de diálogo -->
+        <div class="presenter-section">
+          <figure>
+            <img src="src/MontyH.png" alt="Presentador del juego" id="MontyImg" />
+          </figure>
+
+          <div class="dialogo-presentador-wrapper">
+            <div id="dialogo-presentador">
+              “¡Hola! Escoge una puerta y mira si ganas el auto. ¡Pero cuidado! Tal vez quieras cambiar tu elección...”
+            </div>
+            <div class="globo-borde"></div>
+            <div class="globo-fondo"></div>
+          </div>
         </div>
-        <div id="doorLabels" style="display: flex; justify-content:  space-around;">
-            <h3 id="Labeldoor1"></h3>
-            <h3 id="Labeldoor2"></h3>
-            <h3 id="Labeldoor3"></h3>                    
-        </div>
-    </form>
+            <!-- Juego interactivo -->
+            <form id="doorForm">
+                <div id="doors" style="display: flex; justify-content:  space-around;">
+                        <img src="src\Closedoor.png" id="door1">
+                        <img src="src\Closedoor.png" id="door2">
+                        <img src="src\Closedoor.png" id="door3">
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+<!-- Tabla de estadísticas del juego -->
+<section class="contenedor-principal">
+  <h2 class="tabla-titulo">Estadísticas del Juego</h2>
+  <div class="tabla-wrapper">
+    <table class="tabla-estadisticas" id="listaResultados">
+      <thead>
+        <tr>
+          <th>Intento</th>
+          <th>Puerta Elegida</th>
+          <th>¿Cambió de Puerta?</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se agregarán las filas dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+  <footer class="contenedor-principal">
+    <small>
+      <a href="#">Términos</a> • <a href="#">Privacidad</a>
+    </small>
+  </footer>
     <script src="app.js"></script>
 </body>
 </html>
