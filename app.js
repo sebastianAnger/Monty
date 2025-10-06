@@ -1,6 +1,7 @@
 function door1Handler() { handleDoorClick(1); }
 function door2Handler() { handleDoorClick(2); }
 function door3Handler() { handleDoorClick(3); }
+localStorage.clear();
 
 document.addEventListener("DOMContentLoaded", () => {
     const door1 = document.getElementById("door1");
