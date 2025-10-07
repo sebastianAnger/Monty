@@ -109,6 +109,9 @@ body {
 #doors img:hover {
   transform: scale(1.05);
 }
+#link {
+  color: #f0f0f0;
+}
 
 .reset-btn{
   margin-top: 20px;
