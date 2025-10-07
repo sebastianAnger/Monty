@@ -1,10 +1,11 @@
-# 🎲 Monty Hall Game / Juego del Problema de Monty Hall
+# 🎲 Monty Hall Game / Juego de Monty Hall
 
 ## 📖 Descripción / Description
 
 Este proyecto es una aplicación web interactiva basada en el **Problema de Monty Hall**, un experimento clásico de probabilidad que demuestra cómo **cambiar de puerta aumenta las probabilidades de ganar**.
 
 This project is an interactive web app based on the **Monty Hall Problem**, a classic probability puzzle showing how **switching doors increases your chances of winning**.
+
 
 ## 🧩 Tema / Topic
 
@@ -13,9 +14,15 @@ El usuario elige una puerta, el sistema revela una vacía, y puede decidir si ca
 
 The user picks a door, the system opens one without a prize, and the user can choose to switch or stay.
 
+
+## 🔗 Enlaces / Links
+| 🌐 Sitio Web / Website | [MONTY HALL GAME](montyhall-game.netlify.app)  |
+
+
 ## 💻 Tecnologías / Technologies
 
 HTML • CSS • JavaScript
+
 
 ## 📊 Objetivo / Goal
 
@@ -23,10 +30,12 @@ Visualizar y entender la paradoja del Problema de Monty Hall mediante simulació
 
 Visualize and understand the Monty Hall paradox through an interactive simulation.
 
+
 ## 🤝 Contribuciones / Contributions
 
 ¡Las contribuciones son bienvenidas!
 Contributions are welcome!
+
 
 ## 📜 Licencia / License
 
